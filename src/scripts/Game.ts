@@ -16,13 +16,15 @@ export interface GameSettings {
     height?: number;
     scale?: number;
     speed?: number;
+    walls?: boolean;
 }
 
 const DefaultSettings: GameSettings = {
     width: 17,
     height: 15,
     scale: 30,
-    speed: 75
+    speed: 75,
+    walls: false
 }
 
 export default class Game extends EventEmitter {
@@ -87,7 +89,7 @@ export default class Game extends EventEmitter {
             
             this.checkKey();
 
-            if(this.snek.move(this.settings.width - 1, this.settings.height - 1)) {
+            if(this.snek.move(this.settings.width - 1, this.settings.height - 1, this.settings.walls)) {
                 this.emit('over', this._score);
                 return;
             }

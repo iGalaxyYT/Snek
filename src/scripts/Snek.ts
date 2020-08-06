@@ -25,7 +25,7 @@ export default class Snek extends ScalableRect {
         this.tail.forEach(part => part.draw(context));
     }
 
-    move(maxX: number, maxY: number): boolean {
+    move(maxX: number, maxY: number, walls: boolean): boolean {
         let x = this.position.x;
         let y = this.position.y;
 
@@ -44,10 +44,17 @@ export default class Snek extends ScalableRect {
                 break;
         }
 
-        if(this.position.x < 0) this.position.x = maxX;
-        if(this.position.y < 0) this.position.y = maxY;
-        if(this.position.x > maxX) this.position.x = 0;
-        if(this.position.y > maxY) this.position.y = 0;
+        if(walls == true){
+            if(this.position.x < 0) return true;
+            if(this.position.y < 0) return true;
+            if(this.position.x > maxX) return true;
+            if(this.position.y > maxY) return true;
+        } else {
+            if(this.position.x < 0) this.position.x = maxX;
+            if(this.position.y < 0) this.position.y = maxY;
+            if(this.position.x > maxX) this.position.x = 0;
+            if(this.position.y > maxY) this.position.y = 0;
+        }
 
         for(let tpart of this.tail) {
             if(this.position.equals(tpart.position)) return true;
