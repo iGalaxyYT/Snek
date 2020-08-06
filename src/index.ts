@@ -32,7 +32,7 @@ startButton.addEventListener('click', (): void => {
     [...document.getElementsByClassName("hideDuringGame")].forEach((element: HTMLElement) => {
         element.style.display = "none";
     });
-    [...document.getElementsByClassName("hideDuringGame")].forEach((element: HTMLElement) => {
+    [...document.getElementsByClassName("hideDuringGameButton")].forEach((element: HTMLElement) => {
         element.style.display = "none";
     });
 
@@ -48,7 +48,7 @@ startButton.addEventListener('click', (): void => {
         [...document.getElementsByClassName("hideDuringGame")].forEach((element: HTMLElement) => {
             element.style.display = "block";
         });
-        [...document.getElementsByClassName("hideDuringGame")].forEach((element: HTMLElement) => {
+        [...document.getElementsByClassName("hideDuringGameButton")].forEach((element: HTMLElement) => {
             element.style.display = "inline-block";
         });
         highScore.innerHTML = `Highscore: ${highScoreValue}`;
