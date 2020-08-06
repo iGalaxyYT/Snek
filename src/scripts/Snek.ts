@@ -12,16 +12,17 @@ export enum Direction {
 export default class Snek extends ScalableRect {
     direction: Direction = Direction.RIGHT;
     private tail: ScalableRect[] = [];
+    private snakeColor: string;
 
-    constructor(scale: number, position: Vector) {
+    constructor(scale: number, position: Vector, snakeColor: string) {
         super(scale, position);
+        this.snakeColor = snakeColor;
     }
 
     draw(context: CanvasRenderingContext2D): void {
-        context.fillStyle = "#BAD80A";
+        context.fillStyle = this.snakeColor;
         super.draw(context);
 
-        context.fillStyle = "#73AA24";
         this.tail.forEach(part => part.draw(context));
     }
 

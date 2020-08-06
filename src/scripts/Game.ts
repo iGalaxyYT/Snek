@@ -21,6 +21,7 @@ export interface GameSettings {
     scale?: number;
     speed?: number;
     walls?: boolean;
+    snakeColor?: string;
 }
 
 const DefaultSettings: GameSettings = {
@@ -28,7 +29,8 @@ const DefaultSettings: GameSettings = {
     height: 15,
     scale: 30,
     speed: 75,
-    walls: false
+    walls: false,
+    snakeColor: "#BAD80A"
 }
 
 export default class Game extends EventEmitter {
@@ -49,7 +51,7 @@ export default class Game extends EventEmitter {
         this.context = canvas.getContext('2d');
         this.settings = { ...DefaultSettings, ...settings };
 
-        this.snek = new Snek(this.settings.scale, new Vector(0, 0));
+        this.snek = new Snek(this.settings.scale, new Vector(0, 0), this.settings.snakeColor);
     }
 
     start(): void {

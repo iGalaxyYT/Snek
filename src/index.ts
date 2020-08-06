@@ -4,8 +4,9 @@ const canvas: HTMLCanvasElement = document.getElementById("game") as HTMLCanvasE
 
 const score: HTMLElement = document.getElementById("score") as HTMLElement;
 const highScore: HTMLElement = document.getElementById("highScore") as HTMLElement;
-const startButton: HTMLElement = document.getElementById("startButton") as HTMLElement;
+const startButton: HTMLButtonElement = document.getElementById("startButton") as HTMLButtonElement;
 const wallsCheck: HTMLInputElement = document.getElementById("walls") as HTMLInputElement;
+const snakeColorInput: HTMLInputElement = document.getElementById("snakeColor") as HTMLInputElement;
 
 if(!localStorage.getItem("highScore")) localStorage.setItem("highScore", "0");
 if(!localStorage.getItem("wallsCheck")) localStorage.setItem("wallsCheck", "true");
@@ -26,8 +27,24 @@ wallsCheck.addEventListener("change", (event): void => {
 let highScoreValue: Number = Number(localStorage.getItem("highScore"));
 highScore.innerHTML = `Highscore: ${highScoreValue}`;
 
+if(highScoreValue >= 100) {
+    snakeColorInput.disabled = false;
+    snakeColorInput.placeholder = "#BAD80A";
+}
+snakeColorInput.value = "#BAD80A";
+
+snakeColorInput.addEventListener("change", (event): void => {
+    let s = new Option().style;
+    s.color = (event.target as HTMLInputElement).value;
+    if(s.color.length > 0){
+        startButton.disabled = false;
+    } else {
+        startButton.disabled = true;
+    }
+});
+
 startButton.addEventListener('click', (): void => {
-    const game = new Game(canvas, {walls: wallsCheck.checked});
+    const game = new Game(canvas, {walls: wallsCheck.checked, snakeColor: snakeColorInput.value});
 
     [...document.getElementsByClassName("hideDuringGame")].forEach((element: HTMLElement) => {
         element.style.display = "none";
