@@ -29,10 +29,12 @@ highScore.innerHTML = `Highscore: ${highScoreValue}`;
 startButton.addEventListener('click', (): void => {
     const game = new Game(canvas, {walls: wallsCheck.checked});
 
-    startButton.style.display = "none";
-    highScore.style.display = "none";
-    wallsCheck.style.display = "none";
-    document.getElementById("wallsLabel").style.display = "none";
+    [...document.getElementsByClassName("hideDuringGame")].forEach((element: HTMLElement) => {
+        element.style.display = "none";
+    });
+    [...document.getElementsByClassName("hideDuringGame")].forEach((element: HTMLElement) => {
+        element.style.display = "none";
+    });
 
     game.on("score", s => {
         score.innerHTML = `Score: ${s}`;
@@ -43,10 +45,12 @@ startButton.addEventListener('click', (): void => {
     game.on("over", s => {
         score.innerHTML = `You died!\n Score: ${s}`;
         startButton.innerHTML = "Restart";
-        startButton.style.display = "inline-block";
-        highScore.style.display = "inline-block";
-        wallsCheck.style.display = "inline-block";
-        document.getElementById("wallsLabel").style.display = "inline-block";
+        [...document.getElementsByClassName("hideDuringGame")].forEach((element: HTMLElement) => {
+            element.style.display = "block";
+        });
+        [...document.getElementsByClassName("hideDuringGame")].forEach((element: HTMLElement) => {
+            element.style.display = "inline-block";
+        });
         highScore.innerHTML = `Highscore: ${highScoreValue}`;
     });
 

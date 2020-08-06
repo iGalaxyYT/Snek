@@ -8,7 +8,11 @@ export enum Keys {
     ARROW_LEFT = 37,
     ARROW_UP = 38,
     ARROW_RIGHT = 39,
-    ARROW_DOWN = 40
+    ARROW_DOWN = 40,
+    LETTER_A = 65,
+    LETTER_W = 87,
+    LETTER_D = 68,
+    LETTER_S = 83
 }
 
 export interface GameSettings {
@@ -116,6 +120,18 @@ export default class Game extends EventEmitter {
                 if(this.snek.direction != Direction.LEFT) this.snek.direction = Direction.RIGHT;
                 break;
             case Keys.ARROW_DOWN:
+                if(this.snek.direction != Direction.UP) this.snek.direction = Direction.DOWN;
+                break;
+            case Keys.LETTER_A:
+                if(this.snek.direction != Direction.RIGHT) this.snek.direction = Direction.LEFT;
+                break;
+            case Keys.LETTER_W:
+                if(this.snek.direction != Direction.DOWN) this.snek.direction = Direction.UP;
+                break;
+            case Keys.LETTER_D:
+                if(this.snek.direction != Direction.LEFT) this.snek.direction = Direction.RIGHT;
+                break;
+            case Keys.LETTER_S:
                 if(this.snek.direction != Direction.UP) this.snek.direction = Direction.DOWN;
                 break;
         }

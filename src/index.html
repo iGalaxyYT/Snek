@@ -13,13 +13,13 @@
         <h3>Created by William Hayr (I got bored)</h3>
         <canvas id="game" style="background-color: black; margin: auto; display: block;" width="510" height="450"></canvas>
         <h3 id="score">Score: 0</h3>
-        <h3 id="highScore">Highscore: Loading...</h3><br>
-        <button id="startButton">Start</button><br>
-        <input type="checkbox" id="walls" name="walls"><label for="walls" id="wallsLabel">Walls kill snake (required for highscore)</label><br>
+        <h3 id="highScore" class="hideDuringGame">Highscore: Loading...</h3><br>
+        <button id="startButton" class="hideDuringGameButton">Start</button><br>
+        <input type="checkbox" id="walls" name="walls" class="hideDuringGameButton"><label for="walls" id="wallsLabel" class="hideDuringGameButton">Walls kill snake (required for highscore)</label><br>
         <!-- <input type="checkbox" id="invinc" name="invinc"><label for="invinc" id="invincLabel">Invincibility (disables highscore)</label> -->
         <br><br>
-        <h3>Source Code</h3>
-        <div class="github-card" data-github="iGalaxyYT/Snek" data-width="400" data-height="154" data-theme="default"></div>
+        <h3 class="hideDuringGame">Source Code</h3>
+        <div class="github-card" data-github="iGalaxyYT/Snek" data-width="400" data-height="154" data-theme="default" class="hideDuringGame"></div>
         <script src="https://cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
         <script src="./index.ts"></script>
     </body>
