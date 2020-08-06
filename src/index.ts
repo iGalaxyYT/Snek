@@ -34,6 +34,11 @@ if(highScoreValue >= 100) {
 snakeColorInput.value = "#BAD80A";
 
 snakeColorInput.addEventListener("change", (event): void => {
+    if(highScoreValue < 100) {
+        snakeColorInput.value = "#BAD80A";
+        alert("🐍 Nice try, bud.");
+        return;
+    }
     let s = new Option().style;
     s.color = (event.target as HTMLInputElement).value;
     if(s.color.length > 0){
