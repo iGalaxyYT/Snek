@@ -75,6 +75,15 @@ export default class Game extends EventEmitter {
         const y = this.rand(0, this.settings.height - 1);
 
         this.food = new Food(this.settings.scale, new Vector(x, y));
+        this.snek.tail.forEach(tpart => {
+            if(this.food.position.equals(tpart.position)) {
+                const x = this.rand(0, this.settings.width - 1);
+                const y = this.rand(0, this.settings.height - 1);
+
+                this.food.position = new Vector(x, y);
+                this.food.draw(this.context);
+            }
+        });
     }
 
     private attachKeyboard(): void {

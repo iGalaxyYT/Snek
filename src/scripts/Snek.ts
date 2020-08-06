@@ -11,7 +11,7 @@ export enum Direction {
 
 export default class Snek extends ScalableRect {
     direction: Direction = Direction.RIGHT;
-    private tail: ScalableRect[] = [];
+    tail: ScalableRect[] = [];
     private snakeColor: string;
 
     constructor(scale: number, position: Vector, snakeColor: string) {
