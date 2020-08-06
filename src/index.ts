@@ -8,6 +8,20 @@ const startButton: HTMLElement = document.getElementById("startButton") as HTMLE
 const wallsCheck: HTMLInputElement = document.getElementById("walls") as HTMLInputElement;
 
 if(!localStorage.getItem("highScore")) localStorage.setItem("highScore", "0");
+if(!localStorage.getItem("wallsCheck")) localStorage.setItem("wallsCheck", "false");
+
+switch(localStorage.getItem("wallsCheck")){
+    case "true":
+        wallsCheck.checked = true;
+        break;
+    case "false":
+        wallsCheck.checked = false;
+        break;
+}
+
+wallsCheck.addEventListener("change", (event): void => {
+    localStorage.setItem("wallsCheck", `${(event.target as HTMLInputElement).checked}`);
+});
 
 let highScoreValue: Number = Number(localStorage.getItem("highScore"));
 highScore.innerHTML = `Highscore: ${highScoreValue}`;
