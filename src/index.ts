@@ -8,7 +8,7 @@ const startButton: HTMLElement = document.getElementById("startButton") as HTMLE
 const wallsCheck: HTMLInputElement = document.getElementById("walls") as HTMLInputElement;
 
 if(!localStorage.getItem("highScore")) localStorage.setItem("highScore", "0");
-if(!localStorage.getItem("wallsCheck")) localStorage.setItem("wallsCheck", "false");
+if(!localStorage.getItem("wallsCheck")) localStorage.setItem("wallsCheck", "true");
 
 switch(localStorage.getItem("wallsCheck")){
     case "true":
@@ -36,7 +36,7 @@ startButton.addEventListener('click', (): void => {
 
     game.on("score", s => {
         score.innerHTML = `Score: ${s}`;
-        if(s > highScoreValue) highScoreValue = s;
+        if((s > highScoreValue) && wallsCheck.checked == true) highScoreValue = s;
         localStorage.setItem("highScore", `${highScoreValue}`);
     });
 
