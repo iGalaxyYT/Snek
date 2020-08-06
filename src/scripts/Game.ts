@@ -107,16 +107,16 @@ export default class Game extends EventEmitter {
 
         switch(this.nextKey) {
             case Keys.ARROW_LEFT:
-                this.snek.direction = Direction.LEFT;
+                if(this.snek.direction != Direction.RIGHT) this.snek.direction = Direction.LEFT;
                 break;
             case Keys.ARROW_UP:
-                this.snek.direction = Direction.UP;
+                if(this.snek.direction != Direction.DOWN) this.snek.direction = Direction.UP;
                 break;
             case Keys.ARROW_RIGHT:
-                this.snek.direction = Direction.RIGHT;
+                if(this.snek.direction != Direction.LEFT) this.snek.direction = Direction.RIGHT;
                 break;
             case Keys.ARROW_DOWN:
-                this.snek.direction = Direction.DOWN;
+                if(this.snek.direction != Direction.UP) this.snek.direction = Direction.DOWN;
                 break;
         }
 
