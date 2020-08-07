@@ -1,6 +1,8 @@
 import Snek, { Direction } from "./Snek";
 import Vector from "./Vector";
 import Food from "./Food";
+const fruitSound = require("../sounds/fruit.wav");
+const moveSound = require("../sounds/move.wav");
 
 import { EventEmitter } from "events";
 
@@ -105,6 +107,9 @@ export default class Game extends EventEmitter {
             this.checkKey();
 
             if(this.snek.move(this.settings.width - 1, this.settings.height - 1, this.settings.walls)) {
+                let deathAudio = new Audio(require("../sounds/death.wav"));
+                deathAudio.volume = 0.5;
+                deathAudio.play();
                 this.emit('over', this._score);
                 return;
             }
@@ -119,30 +124,40 @@ export default class Game extends EventEmitter {
 
     private checkKey(): void {
         if(this.nextKey == null) return;
+        let moveSoundAudio = new Audio(moveSound);
+        moveSoundAudio.volume = 0.25;
 
         switch(this.nextKey) {
             case Keys.ARROW_LEFT:
+                moveSoundAudio.play();
                 if(this.snek.direction != Direction.RIGHT) this.snek.direction = Direction.LEFT;
                 break;
             case Keys.ARROW_UP:
+                moveSoundAudio.play();
                 if(this.snek.direction != Direction.DOWN) this.snek.direction = Direction.UP;
                 break;
             case Keys.ARROW_RIGHT:
+                moveSoundAudio.play();
                 if(this.snek.direction != Direction.LEFT) this.snek.direction = Direction.RIGHT;
                 break;
             case Keys.ARROW_DOWN:
+                moveSoundAudio.play();
                 if(this.snek.direction != Direction.UP) this.snek.direction = Direction.DOWN;
                 break;
             case Keys.LETTER_A:
+                moveSoundAudio.play();
                 if(this.snek.direction != Direction.RIGHT) this.snek.direction = Direction.LEFT;
                 break;
             case Keys.LETTER_W:
+                moveSoundAudio.play();
                 if(this.snek.direction != Direction.DOWN) this.snek.direction = Direction.UP;
                 break;
             case Keys.LETTER_D:
+                moveSoundAudio.play();
                 if(this.snek.direction != Direction.LEFT) this.snek.direction = Direction.RIGHT;
                 break;
             case Keys.LETTER_S:
+                moveSoundAudio.play();
                 if(this.snek.direction != Direction.UP) this.snek.direction = Direction.DOWN;
                 break;
         }
@@ -153,6 +168,7 @@ export default class Game extends EventEmitter {
     private checkFoodCollision(): void {
         if(this.snek.position.equals(this.food.position)) {
             this.snek.eat(this.food);
+            new Audio(fruitSound).play();
             this.emit('score', ++this._score);
             this.placeFood();
         }
